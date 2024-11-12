@@ -1,8 +1,8 @@
 <template>
     <nav class="bg-white border-gray-200 dark:bg-cyan-200">
         <div class="max-w-screen-xl flex flex-wrap items-center justify-between mx-auto p-4">
-            <a class="flex items-center space-x-3 rtl:space-x-reverse">
-                <img src="../assets/imgs/logo.png" class="h-32" alt="Já quero pijamas Logo" />
+            <a class="text-3xl text-sky-950 font-bold uppercase flex items-center space-x-3 rtl:space-x-reverse">
+                <h1>Já Quero Pijamas</h1>
             </a>
             <!-- Menu Hamburguer -->
             <button @click="toggleMenu" type="button"
@@ -22,9 +22,9 @@
                 <ul>
                     <li>
                         <button type="button" class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:ring-blue-300 
-                            font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 
+                            font-medium rounded-lg text-base px-5 py-2.5 me-2 mb-2 dark:bg-blue-600 
                             dark:hover:bg-blue-700 focus:outline-none dark:focus:ring-blue-800">
-                            <i class="fa-brands fa-whatsapp"></i> Contato
+                            <i class="fa-brands fa-whatsapp"></i> Entre em contato agora mesmo!
                         </button>
                     </li>
                 </ul>
