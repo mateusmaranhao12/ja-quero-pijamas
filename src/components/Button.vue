@@ -48,7 +48,7 @@ export default class Button extends Vue {
     }
 
     public linkWhatsapp() {
-        window.open('https://wa.link/frr87u')
+        window.open('https://wa.link/m8mhk4')
     }
 
     public linkInstagram() {
