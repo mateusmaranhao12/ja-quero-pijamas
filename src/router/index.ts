@@ -1,6 +1,8 @@
 import { createRouter, createWebHistory, RouteRecordRaw } from 'vue-router'
+
 import Index from '@/views/Index.vue'
 import LoginAdmin from '@/views/LoginAdmin.vue'
+import AdicionarProduto from '@/views/AdicionarProduto.vue'
 
 const routes: Array<RouteRecordRaw> = [
 
@@ -14,6 +16,12 @@ const routes: Array<RouteRecordRaw> = [
     path: '/login-admin',
     name: 'login-admin',
     component: LoginAdmin
+  },
+
+  {
+    path: '/adicionar-produto',
+    name: 'adicionar-produto',
+    component: AdicionarProduto
   }
 ]
 
