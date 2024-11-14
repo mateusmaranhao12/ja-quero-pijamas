@@ -1,7 +1,11 @@
 <template>
-  <Navbar />
-  <router-view/>
-  <Footer />
+  <div class="flex flex-col min-h-screen">
+    <Navbar />
+    <main class="flex-grow">
+      <router-view />
+    </main>
+    <Footer />
+  </div>
 </template>
 
 <script lang="ts">
@@ -15,7 +19,7 @@ import Footer from './components/Footer.vue'
     Navbar
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue { }
 </script>
 
 <style lang="scss">
