@@ -61,12 +61,10 @@ export default class Produtos extends Vue {
             );
 
             if (response.data.success) {
-                this.produtos = this.produtos.filter(produto => produto.id !== idProduto);
-                this.definirMensagem('Produto removido com sucesso!', 'success');
-                console.log(`Produto removido: ID = ${idProduto}, Sucesso: ${response.data.success}`);
+                this.produtos = this.produtos.filter(produto => produto.id !== idProduto)
+                this.definirMensagem('Produto removido com sucesso!', 'success')
             } else {
-                this.definirMensagem(response.data.message || 'Erro ao remover o produto.', 'error');
-                console.log(`Erro ao remover produto: ID = ${idProduto}, Mensagem: ${response.data.message}`);
+                this.definirMensagem(response.data.message || 'Erro ao remover o produto.', 'error')
             }
         } catch (error) {
             console.error('Erro ao remover produto:', error);

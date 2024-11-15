@@ -4,7 +4,7 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
             <div v-for="(pijama, index) in pijamas" :key="index"
                 class="bg-white p-4 rounded-lg shadow-md flex flex-col items-center text-center">
-                <img :src="require(`@/assets/imgs/${pijama.image}`)" :alt="`Produto ${index + 1}`" class="w-full h-48 object-cover rounded-lg mb-4">
+                <img :src="pijama.imagem" :alt="`Produto ${index + 1}`" class="w-full h-48 object-cover rounded-lg mb-4">
                 <Button />
             </div>
         </div>
@@ -14,6 +14,7 @@
 <script lang="ts">
 import { Options, Vue } from 'vue-class-component'
 import Button from './Button.vue';
+import axios from 'axios'
 
 @Options({
     components: {
@@ -22,62 +23,21 @@ import Button from './Button.vue';
 })
 export default class Produtos extends Vue {
 
-    pijamas = [
-        {
-            image: 'img2.jpeg'
-        },
-        {
-            image: 'img3.jpeg'
-        },
-        {
-            image: 'img4.jpeg'
-        },
-        {
-            image: 'img5.jpeg'
-        },
-        {
-            image: 'img6.jpeg'
-        },
-        {
-            image: 'img7.jpeg'
-        },
-        {
-            image: 'img8.jpeg'
-        },
-        {
-            image: 'img9.jpeg'
-        },
-        {
-            image: 'img10.jpeg'
-        },
-        {
-            image: 'img11.jpeg'
-        },
-        {
-            image: 'img12.jpeg'
-        },
-        {
-            image: 'img13.jpeg'
-        },
-        {
-            image: 'img14.jpeg'
-        },
-        {
-            image: 'img15.jpeg'
-        },
-        {
-            image: 'img16.jpeg'
-        },
-        {
-            image: 'img17.jpeg'
-        },
-        {
-            image: 'img18.jpeg'
-        },
-        {
-            image: 'img19.jpeg'
+    pijamas: Array<{ imagem: string }> = []
+
+    async mounted() {
+        await this.carregarProdutos()
+    }
+
+    //carregar produtos
+    async carregarProdutos() {
+        try {
+            const response = await axios.get('http://localhost/Projetos/ja-quero-pijamas/backend/api/listar_produtos.php');
+            this.pijamas = response.data.produtos
+        } catch (error) {
+            console.error('Erro ao carregar produtos:', error)
         }
-    ]
+    }
 
 }
 </script>
