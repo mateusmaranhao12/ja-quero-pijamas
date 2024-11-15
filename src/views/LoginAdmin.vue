@@ -33,16 +33,14 @@ export default class LoginAdmin extends Vue {
             const response = await axios.post('http://localhost/Projetos/ja-quero-pijamas/backend/api/login.php', {
                 email: this.email,
                 senha: this.senha
-            }, {
-                headers: {
-                    'Content-Type': 'application/json',
-                }
             });
 
-            console.log('Resposta completa do servidor:', response); // Verifique tudo na resposta
-            console.log('Dados da resposta:', response.data); // Verifique apenas o corpo da resposta
+            console.log('Resposta do servidor:', response.data);
 
             if (response.data.success) {
+                // Salvar a autenticação no localStorage
+                localStorage.setItem('user-authenticated', 'true');
+
                 alert('Login realizado com sucesso!');
                 this.$router.push('/adicionar-produto');
             } else {
