@@ -47,9 +47,6 @@ export default class AdicionarProduto extends Vue {
     mensagem: string | null = null  // Variável para armazenar a mensagem de erro
     tipoMensagem: 'success' | 'error' | null = null
 
-    // Definindo o tipo de produtosRef
-    private produtosRef!: InstanceType<typeof RemoverProdutos>;
-
     //logout
     public logout() {
         localStorage.removeItem('user-authenticated');
@@ -77,41 +74,48 @@ export default class AdicionarProduto extends Vue {
 
     // Após adicionar o produto no backend, adicione a imagem ao array de produtos diretamente no frontend:
     async adicionarProduto() {
-        if (!this.imagem) {
-            this.definirMensagem('Por favor, escolha uma imagem.', 'error');
-            return;
-        }
-
-        const formData = new FormData();
-        formData.append('imagem', this.imagem);
-
-        try {
-            const response = await axios.post(
-                'http://localhost/Projetos/ja-quero-pijamas/backend/api/adicionar_produto.php',
-                formData,
-                { headers: { 'Content-Type': 'multipart/form-data' } }
-            );
-
-            if (response.data.success) {
-                this.definirMensagem('Produto adicionado com sucesso!', 'success')
-                this.$emit('produto-adicionado', response.data.produto)
-
-                const inputFile = this.$refs.fileInput as HTMLInputElement
-                if (inputFile) {
-                    inputFile.value = '' // Limpar o campo de input
-                    const label = inputFile.nextElementSibling as HTMLElement
-                    if (label) {
-                        label.innerText = 'Nenhum arquivo escolhido'
-                    }
-                }
-            } else {
-                this.definirMensagem(response.data.message || 'Erro ao adicionar o produto.', 'error')
-            }
-        } catch (error) {
-            console.error(error);
-            this.definirMensagem('Erro ao enviar o produto.', 'error')
-        }
+    if (!this.imagem) {
+        this.definirMensagem('Por favor, escolha uma imagem.', 'error');
+        return;
     }
+
+    const formData = new FormData();
+    formData.append('imagem', this.imagem);
+
+    try {
+        const response = await axios.post(
+            'http://localhost/Projetos/ja-quero-pijamas/backend/api/adicionar_produto.php',
+            formData,
+            { headers: { 'Content-Type': 'multipart/form-data' } }
+        );
+
+        if (response.data.success) {
+            this.definirMensagem('Produto adicionado com sucesso!', 'success')
+
+            // Receber o ID do produto retornado pela API
+            const idProduto = response.data.id
+
+            // Emitir o evento com o produto, incluindo o id
+            this.$emit('produto-adicionado', { id: idProduto, imagem: this.imagem })
+
+            // Limpar o campo de input
+            const inputFile = this.$refs.fileInput as HTMLInputElement
+            if (inputFile) {
+                inputFile.value = '' // Limpar o campo de input
+                const label = inputFile.nextElementSibling as HTMLElement
+                if (label) {
+                    label.innerText = 'Nenhum arquivo escolhido'
+                }
+            }
+        } else {
+            this.definirMensagem(response.data.message || 'Erro ao adicionar o produto.', 'error')
+        }
+    } catch (error) {
+        console.error(error);
+        this.definirMensagem('Erro ao enviar o produto.', 'error');
+    }
+}
+
 
     definirMensagem(mensagem: string, tipo: 'success' | 'error') {
         this.mensagem = mensagem;
