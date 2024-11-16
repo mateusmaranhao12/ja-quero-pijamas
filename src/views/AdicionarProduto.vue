@@ -126,7 +126,7 @@ export default class AdicionarProduto extends Vue {
 
         try {
             const response = await axios.post(
-                'http://mateusnmaranhao.wuaze.com/api/adicionar_produto.php',
+                'http://localhost/Projetos/ja-quero-pijamas/backend/api/adicionar_produto.php',
                 formData,
                 { headers: { 'Content-Type': 'multipart/form-data' } }
             );
