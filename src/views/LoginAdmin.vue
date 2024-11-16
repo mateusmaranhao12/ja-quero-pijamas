@@ -40,7 +40,7 @@ export default class LoginAdmin extends Vue {
 
     async fazerLogin() {
         try {
-            const response = await axios.post('http://localhost/Projetos/ja-quero-pijamas/backend/api/login.php', {
+            const response = await axios.post('http://mateusnmaranhao.wuaze.com/api/login.php', {
                 email: this.email,
                 senha: this.senha
             })
