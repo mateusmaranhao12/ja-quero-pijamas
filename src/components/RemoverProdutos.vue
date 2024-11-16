@@ -45,7 +45,7 @@ export default class Produtos extends Vue {
     //carregar produtos
     async carregarProdutos() {
         try {
-            const response = await axios.get('https://linknest.com.br/ja-quero-pijamas/api/listar_produtos.php');
+            const response = await axios.get('http://localhost/Projetos/ja-quero-pijamas/backend/api/listar_produtos.php');
             this.produtos = response.data.produtos
         } catch (error) {
             console.error('Erro ao carregar produtos:', error)
@@ -55,7 +55,7 @@ export default class Produtos extends Vue {
     async removerProduto(idProduto: number) {
         try {
             const response = await axios.post(
-                'https://linknest.com.br/ja-quero-pijamas/api/remover_produto.php',
+                'http://localhost/Projetos/ja-quero-pijamas/backend/api/remover_produto.php',
                 { id: idProduto },  // Envia o ID como JSON
                 { headers: { 'Content-Type': 'application/json' } } // Certifique-se de definir o tipo de conteúdo
             );

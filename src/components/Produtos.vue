@@ -32,7 +32,7 @@ export default class Produtos extends Vue {
     //carregar produtos
     async carregarProdutos() {
         try {
-            const response = await axios.get('https://linknest.com.br/ja-quero-pijamas/api/listar_produtos.php');
+            const response = await axios.get('http://localhost/Projetos/ja-quero-pijamas/backend/api/listar_produtos.php');
             this.pijamas = response.data.produtos
         } catch (error) {
             console.error('Erro ao carregar produtos:', error)
