@@ -15,7 +15,8 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10 px-5">
+    <div class="grid grid-cols-1 gap-10 mt-10 mb-10 px-5">
+        <!--<div class="grid grid-cols-1 lg:grid-cols-2 gap-10 mt-10 mb-10 px-5">-->
         <!--Card de adicionar Produto-->
         <form class="formulario max-w-sm mx-auto" @submit.prevent="adicionarProduto">
             <h1 class="text-2xl my-3.5 text-center uppercase font-bold">Adicionar produto</h1>
@@ -32,7 +33,7 @@
         </form>
 
         <!-- Card de Adicionar Vídeo -->
-        <form class="formulario max-w-sm mx-auto" @submit.prevent="adicionarVideo">
+        <!--<form class="formulario max-w-sm mx-auto" @submit.prevent="adicionarVideo">
             <div v-if="mensagemVideo"
                 :class="['mt-5 mb-5 border-l-4 p-4', tipoMensagemVideo === 'success' ? 'bg-green-100 border-green-500 text-green-700' : 'bg-red-100 border-red-500 text-red-700']"
                 role="alert">
@@ -51,12 +52,13 @@
             <button type="submit"
                 class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-auto px-5 py-2.5 text-center">
                 Adicionar Vídeo</button>
-        </form>
+        </form>-->
     </div>
 
-    <div class="bg-gray-100 mt-20">
+    <!--<div class="bg-gray-100 mt-20">
         <remover-videos ref="videos" />
-    </div>
+    </div>-->
+
     <div class="bg-gray-200">
         <remover-produtos ref="produtos" />
     </div>
@@ -66,12 +68,10 @@
 import { Options, Vue } from 'vue-class-component';
 import axios from 'axios';
 import RemoverProdutos from '../components/RemoverProdutos.vue'
-import RemoverVideos from '@/components/RemoverVideos.vue';
 
 @Options({
     components: {
-        RemoverProdutos,
-        RemoverVideos
+        RemoverProdutos
     }
 })
 
@@ -159,7 +159,7 @@ export default class AdicionarProduto extends Vue {
     }
 
     //adicionar video
-    async adicionarVideo() {
+    /*async adicionarVideo() {
         const formData = new FormData()
         const fileInput = this.$refs.fileInputVideo as HTMLInputElement
 
@@ -221,7 +221,7 @@ export default class AdicionarProduto extends Vue {
                 this.$refs.fileInputVideo.value = ''
             }
         }
-    }
+    }*/
 
     definirMensagem(mensagem: string, tipo: 'success' | 'error') {
         this.mensagem = mensagem;
